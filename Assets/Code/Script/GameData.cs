@@ -12,6 +12,6 @@ public class GameData : MonoBehaviour {
 	public int score;	
 	public void SetScore()
 	{
-		beginScore = score;
+//		beginScore = score;
 	}
 }
