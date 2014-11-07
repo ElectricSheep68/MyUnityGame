@@ -6,7 +6,7 @@ namespace Assets.Code.States{
 	public class Stage01 : IState {
 		private StateManager manager;
 		
-		public void StartScene(StateManager stateManager) {
+		public Stage01(StateManager stateManager) {
 			//初期化
 			manager = stateManager;
 		}

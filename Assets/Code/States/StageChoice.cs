@@ -16,15 +16,15 @@ namespace Assets.Code.States {
 			if(Input.GetKeyUp(KeyCode.Return)) { // Returnキーを押すとStartSceneに遷移
 				//Application.LoadLevel("Scene0");
 				Debug.Log("Play State");
-				manager.SwitchState(new StartScene(manager));
+				manager.SwitchState(new Stage01(manager));
 			}
 		}
 		public void Render() {
 			//描画等
-			if(GUI.Button(new Rect(50, 50, 50, 50), "comingsoon")) {
+			if(GUI.Button(new Rect(100, 100, 100, 50), "comingsoon")) {
 				Application.LoadLevel("Start");
 				Time.timeScale = 1;
-				manager.SwitchState(new StartScene(manager));    
+				manager.SwitchState(new Stage01(manager));    
 			}
 		}
 	}
