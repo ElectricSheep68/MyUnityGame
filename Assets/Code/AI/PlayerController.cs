@@ -11,14 +11,14 @@ public class PlayerController: MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		movementSpeed = 10.0f;
+		movementSpeed = 9.0f;
 		rotSpeed = 2.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Vector3.Distance(transform.position, targetTransform.position) < 5.0f)
+		if(Vector3.Distance(transform.position, targetTransform.position) < 0f)
 			return;		
 		Vector3 tarPos = targetTransform.position;
 		tarPos.y = transform.position.y;
@@ -32,7 +32,7 @@ public class PlayerController: MonoBehaviour
 
 	void Controller () 
 	{
-			if(Vector3.Distance(transform.position, targetTransform.position) < 5.0f)
+			if(Vector3.Distance(transform.position, targetTransform.position) < 0f)
 				return;
 			
 			Vector3 tarPos = targetTransform.position;
