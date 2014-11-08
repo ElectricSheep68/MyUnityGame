@@ -22,7 +22,7 @@ namespace Assets.Code.States {
 		public void Render() {
 			//描画等
 			if(GUI.Button(new Rect(100, 100, 100, 50), "comingsoon")) {
-				Application.LoadLevel("Start");
+				Application.LoadLevel("Stage01");
 				Time.timeScale = 1;
 				manager.SwitchState(new Stage01(manager));    
 			}
