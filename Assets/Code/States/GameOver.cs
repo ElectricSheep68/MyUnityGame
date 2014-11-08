@@ -10,8 +10,9 @@ namespace Assets.Code.States{
 			//初期化
 			manager = stateManager;
 		}
-		
-		public void Render() {
+		public void StateUpdate() {
+				}
+			public void Render() {
 			//描画等
 			if(GUI.Button(new Rect(100, 100, 100, 50), "Replay?")) {
 				Application.LoadLevel("Stage01");

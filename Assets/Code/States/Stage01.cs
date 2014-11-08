@@ -10,14 +10,20 @@ namespace Assets.Code.States{
 			//初期化
 			manager = stateManager;
 		}
-		
-		public void Render() {
+		public void StateUpdate() {
+				}
+			public void Render() {
 			//描画等
-			if(GUI.Button(new Rect(100, 100, 100, 50), "comingsoon")) {
-				Application.LoadLevel("Stage01");
+			if(GUI.Button(new Rect(50, 50, 100, 50), "TestGameOver")) {
+				Application.LoadLevel("GameOver");
 				Time.timeScale = 1;
-				manager.SwitchState(new Stage01(manager));    
+				manager.SwitchState(new GameOver(manager));    
 			}
+			if(GUI.Button(new Rect(50, 110, 100, 50), "TestResult")) {
+				Application.LoadLevel("Result");
+				Time.timeScale = 1;
+				manager.SwitchState(new Result(manager));    
 		}
-	}	
+	}		
+	}
 }
