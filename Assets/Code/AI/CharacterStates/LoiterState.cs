@@ -28,7 +28,7 @@ public class LoiterState : FSMState
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
 		//気まぐれに待機する。
-		int random = (Random.Range(0,6))
+		int random = (Random.Range (0, 6));
 		if (random > 5) {
 			Debug.Log ("Switch to hate State");
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
@@ -52,3 +52,4 @@ public class LoiterState : FSMState
 		//前進
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 	}
+}

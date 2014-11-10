@@ -28,7 +28,7 @@ public class IdolState : FSMState
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
 		//気まぐれに待機する。
-		int random = (Random.Range(0,6))
+		int random = (Random.Range(0,6));
 		if (random > 5) {
 			Debug.Log ("Switch to loiter State");
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind2);

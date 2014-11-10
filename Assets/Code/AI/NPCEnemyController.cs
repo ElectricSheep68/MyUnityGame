@@ -12,7 +12,7 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 		health = 100;
 		elapsedTime = 0.0f;
 		shootRate = 2.0f;
-		
+		hate = 0;
 		GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
 		playerTransform = objPlayer.transform;
 		
@@ -88,7 +88,7 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 		//hpを減少させます
 		if (collision.gameObject.tag == "Bullet")
 		{
-			health -= 50;
+			health -= 30;
 			
 			if (health <= 0)
 			{
@@ -97,6 +97,11 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 				Explode();
 			}
 		}
+		if (collision.gameObject.tag == "player") {
+			hate += 1;
+			SetTransition(Transition.Hate);
+		}
+
 	}
 	
 	protected void Explode()
