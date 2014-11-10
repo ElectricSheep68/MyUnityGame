@@ -4,13 +4,12 @@ using System.Collections;
 public class NPCEnemyController : AdvancedFSM //継承してる
 {
 	public GameObject Bullet;
-	private int health;
-	
+	public int health;
+	public int hatePoint = 0;
 	//NPC FSMの初期化
 	protected override void Initialize()
 	{
 		health = 100;
-		
 		elapsedTime = 0.0f;
 		shootRate = 2.0f;
 		
@@ -58,9 +57,9 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 			i++;
 		}
 		
-		IdolState patrol = new IdolState(waypoints);
-		patrol.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
-		patrol.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+		IdolState Idol = new IdolState(waypoints);
+		Idol.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
+		Idol.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
 		AvoidState chase = new AvoidState(waypoints);
 		chase.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
