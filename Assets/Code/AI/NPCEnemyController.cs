@@ -58,11 +58,11 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 			i++;
 		}
 		
-		PatrolState patrol = new PatrolState(waypoints);
+		IdolState patrol = new IdolState(waypoints);
 		patrol.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
 		patrol.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
-		ChaseState chase = new ChaseState(waypoints);
+		AvoidState chase = new AvoidState(waypoints);
 		chase.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
 		chase.AddTransition(Transition.ReachPlayer, FSMStateID.Attacking);
 		chase.AddTransition(Transition.NoHealth, FSMStateID.Dead);
