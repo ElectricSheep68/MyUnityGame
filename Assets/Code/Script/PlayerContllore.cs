@@ -31,7 +31,7 @@ public class playerContlore : MonoBehaviour
 		RaycastHit hit;
 		var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		
-		if(Input.GetMouseButtonDown("Fire1") && Physics.Raycast(ray, out hit, 100.0f))
+		if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, 100.0f))
 		{
 			targetPoint = hit.point;
 		}

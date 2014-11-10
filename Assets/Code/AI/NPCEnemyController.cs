@@ -5,7 +5,7 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 {
 	public GameObject Bullet;
 	public int health;
-	public int hatePoint = 0;
+	public int hate;
 	//NPC FSMの初期化
 	protected override void Initialize()
 	{
@@ -58,15 +58,17 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 		}
 		
 		IdolState Idol = new IdolState(waypoints);
-		Idol.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
+		Idol.AddTransition(Transition.NoMind, FSMStateID.Avoid);
+		Idol.AddTransition(Transition.Fear, FSMStateID.Avoid);
 		Idol.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+		Idol.AddTransition(Transition.Hate, FSMStateID.Trick);
 		
-		AvoidState chase = new AvoidState(waypoints);
-		chase.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
-		chase.AddTransition(Transition.ReachPlayer, FSMStateID.Attacking);
-		chase.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+		AvoidState Avoid = new AvoidState(waypoints);
+		Avoid.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
+		Avoid.AddTransition(Transition.ReachPlayer, FSMStateID.Trick);
+		Avoid.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
-		AttackState attack = new AttackState(waypoints);
+		HateState attack = new HateState(waypoints);
 		attack.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
 		attack.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
 		attack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
@@ -74,8 +76,8 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 		DeadState dead = new DeadState();
 		dead.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
-		AddFSMState(patrol);
-		AddFSMState(chase);
+		AddFSMState(Idol);
+		AddFSMState(Avoid);
 		AddFSMState(attack);
 		AddFSMState(dead);
 	}

@@ -11,6 +11,10 @@ public enum Transition
 	ReachPlayer,
 	LostPlayer,
 	NoHealth,
+	Fear,
+	Hate,
+	NoMind,
+	NoMind2,
 }
 
 public enum FSMStateID
@@ -20,6 +24,10 @@ public enum FSMStateID
 	Chasing,
 	Attacking,
 	Dead,
+	Avoid,
+	Trick,
+	idol,
+	Loiter,
 }
 
 public class AdvancedFSM : FSM 

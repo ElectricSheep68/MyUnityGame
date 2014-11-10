@@ -14,22 +14,26 @@ public class IdolState : FSMState
 	
 	public override void Reason(Transform player, Transform npc)
 	{
-	int health = npc.GetComponent<NPCEnemyController>().health;
-		//体力が少しでも減ったら逃げモードに
-		if (health < 100)
-		{
-			Debug.Log("Switch to Avoid State");
-			npc.GetComponent<NPCEnemyController>().SetTransition(Transition.SawPlayer);
+				int health = npc.GetComponent<NPCEnemyController> ().health;
+				//体力が少しでも減ったら逃げモードに
+				if (health < 100) {
+						Debug.Log ("Switch to Avoid State");
+						npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
+				}
+	
+				int hate = npc.GetComponent<NPCEnemyController> ().hate;
+				//憎しみがたまると攻撃
+				if (hate > 100) {
+						Debug.Log ("Switch to hate State");
+			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
+		}
+		//気まぐれに待機する。
+		int random = (Random.Range(0,6))
+		if (random > 5) {
+			Debug.Log ("Switch to loiter State");
+			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind2);
 		}
 	}
-	
-		int hatePoint = npc.GetComponent<NPCEnemyController>().hatepoint;
-		//憎しみがたまると攻撃
-		if (hatePoint > 100)
-		{
-			Debug.Log("Switch to hate State");
-			npc.GetComponent<NPCEnemyController>().SetTransition(Transition.SawPlayer);
-		}
 
 	public override void Act(Transform player, Transform npc)
 	{
