@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Asset.code.AI.CharacterState;
+namespace Asset.code.AI {
 public class NPCEnemyController : AdvancedFSM //継承してる
 {
 	public GameObject Bullet;
@@ -58,27 +59,34 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 		}
 		
 		IdolState Idol = new IdolState(waypoints);
-		Idol.AddTransition(Transition.NoMind, FSMStateID.Avoid);
+		Idol.AddTransition(Transition.NoMind, FSMStateID.Idol);
 		Idol.AddTransition(Transition.Fear, FSMStateID.Avoid);
 		Idol.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		Idol.AddTransition(Transition.Hate, FSMStateID.Trick);
+
+		LoiterState Loiter = new LoiterState(waypoints);
+		Loiter.AddTransition(Transition.NoMind2, FSMStateID.Loiter);
+		Loiter.AddTransition(Transition.Fear, FSMStateID.Avoid);
+		Loiter.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+		Loiter.AddTransition(Transition.Hate, FSMStateID.Trick);
 		
 		AvoidState Avoid = new AvoidState(waypoints);
-		Avoid.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
-		Avoid.AddTransition(Transition.ReachPlayer, FSMStateID.Trick);
+		Avoid.AddTransition(Transition.Fear, FSMStateID.Avoid);
+		Avoid.AddTransition(Transition.NoMind, FSMStateID.Idol);
+		Avoid.AddTransition(Transition.Hate, FSMStateID.Trick);
 		Avoid.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
-		HateState attack = new HateState(waypoints);
-		attack.AddTransition(Transition.LostPlayer, FSMStateID.Patrolling);
-		attack.AddTransition(Transition.SawPlayer, FSMStateID.Chasing);
-		attack.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+		HateState Hate = new HateState(waypoints);
+		Hate.AddTransition(Transition.Hate, FSMStateID.Trick);
+		Hate.AddTransition(Transition.Fear, FSMStateID.Avoid);
+		Hate.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
 		DeadState dead = new DeadState();
 		dead.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 		
 		AddFSMState(Idol);
 		AddFSMState(Avoid);
-		AddFSMState(attack);
+		AddFSMState(Hate);
 		AddFSMState(dead);
 	}
 	
@@ -125,4 +133,5 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 			elapsedTime = 0.0f;
 		}
 	}
+}
 }

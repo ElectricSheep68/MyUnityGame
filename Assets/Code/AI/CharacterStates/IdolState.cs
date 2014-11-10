@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Asset.code.AI.CharacterState {
 public class IdolState : FSMState
 {
 	public IdolState(Transform[] wp) 
@@ -52,4 +52,5 @@ public class IdolState : FSMState
 		//前進
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 	}
+}
 }

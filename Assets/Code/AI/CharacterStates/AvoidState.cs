@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Asset.code.AI.CharacterState {
 public class AvoidState : FSMState
 {
 	public AvoidState(Transform[] wp) 
@@ -15,10 +15,10 @@ public class AvoidState : FSMState
 	public override void Reason(Transform player, Transform npc)
 	{
 		int health = npc.GetComponent<NPCEnemyController> ().health;
-		//体力が少しでも減ったら逃げモードに
-		if (health < 100) {
-			Debug.Log ("Switch to Avoid State");
-			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Fear);
+			//体力回復で待機
+		if (health >= 100) {
+				Debug.Log ("Switch to Idol State");
+				npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
 		}
 		
 		int hate = npc.GetComponent<NPCEnemyController> ().hate;
@@ -27,24 +27,17 @@ public class AvoidState : FSMState
 			Debug.Log ("Switch to hate State");
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
-		//気まぐれに待機する。
-		int random = (Random.Range (0, 6));
-		if (random > 5) {
-			Debug.Log ("Switch to hate State");
-			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
-		}
 	}
 	
 	public override void Act(Transform player, Transform npc)
 	{
 		destPos = player.position;
-		int a = 0
-		Avoidpos = (destPos - npc.position) * -1
+		Vector3 avoidpos = (destPos - npc.position) * -1;
 		
-		Quaternion targetRotation = Quaternion.LookRotation(destPos - npc.position);
+		Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
 		npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
 		
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 	}
 }
-
+}

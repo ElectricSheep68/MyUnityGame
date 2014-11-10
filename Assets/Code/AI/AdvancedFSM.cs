@@ -26,7 +26,7 @@ public enum FSMStateID
 	Dead,
 	Avoid,
 	Trick,
-	idol,
+	Idol,
 	Loiter,
 }
 

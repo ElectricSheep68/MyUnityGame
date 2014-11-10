@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Asset.code.AI.CharacterState {
 public class LoiterState : FSMState
 {
 	public LoiterState(Transform[] wp) 
@@ -52,4 +52,5 @@ public class LoiterState : FSMState
 		//前進
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 	}
+}
 }

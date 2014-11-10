@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class DeadState : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+namespace Asset.code.AI.CharacterState {
+public class DeadState : FSMState
+{
+	public DeadState() 
+	{
+		stateID = FSMStateID.Dead;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public override void Reason(Transform player, Transform npc)
+	{
+		
 	}
+	
+	public override void Act(Transform player, Transform npc)
+	{
+		
+	}
+}
 }
