@@ -100,8 +100,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 729136568}
+  - {fileID: 280312646}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1 &52691017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 52691018}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &52691018
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 52691017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1385104437}
+  m_RootOrder: 0
 --- !u!1 &115965749
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +198,7 @@ GameObject:
   - 136: {fileID: 280312644}
   - 23: {fileID: 280312643}
   - 54: {fileID: 280312647}
-  - 114: {fileID: 280312648}
+  - 114: {fileID: 280312649}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -225,11 +253,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280312642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4.3607235}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 923965116}
+  m_Father: {fileID: 5095279}
+  m_RootOrder: 1
 --- !u!54 &280312647
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -245,7 +274,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &280312648
+--- !u!114 &280312649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -256,6 +285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71ac6f56cd18314eac1f3b5842692c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 100000, guid: a8fc92a724bb54041af3986891f05ae2, type: 2}
+  health: 0
+  hate: 0
 --- !u!1 &649623594
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +451,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5095279}
   m_RootOrder: 0
+--- !u!1 &758790116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 758790117}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &758790117
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758790116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 923965116}
+  m_RootOrder: 0
 --- !u!1 &857607992
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +548,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 649623595}
   m_RootOrder: 0
+--- !u!1 &923965115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 923965116}
+  m_Layer: 0
+  m_Name: Turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &923965116
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923965115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 758790117}
+  m_Father: {fileID: 280312646}
+  m_RootOrder: 0
 --- !u!1 &1293050042
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +645,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293050042}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1385104436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1385104437}
+  m_Layer: 0
+  m_Name: Turret
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1385104437
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1385104436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 52691018}
+  m_Father: {fileID: 2033376510}
+  m_RootOrder: 0
 --- !u!1 &1655198486
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +753,7 @@ GameObject:
   - 33: {fileID: 2033376509}
   - 136: {fileID: 2033376508}
   - 23: {fileID: 2033376507}
-  - 114: {fileID: 2033376506}
+  - 54: {fileID: 2033376506}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -646,21 +761,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2033376506
-MonoBehaviour:
+--- !u!54 &2033376506
+Rigidbody:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033376505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a137bae437aefc94a9986d7c2fa0bb37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  mass: 5
-  force: 50
-  minimumDistToAvoid: 20
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!23 &2033376507
 Renderer:
   m_ObjectHideFlags: 0
@@ -708,11 +823,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2033376505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5.83181381}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1385104437}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
 --- !u!1 &2144523159
 GameObject:
   m_ObjectHideFlags: 0

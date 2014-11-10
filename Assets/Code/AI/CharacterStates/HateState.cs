@@ -16,10 +16,16 @@ namespace Asset.code.AI.CharacterState {
 		{
 			int hate = npc.GetComponent<NPCEnemyController> ().hate;
 			//憎しみが消えるとおびえる
-			if (hate < 1) {
+			if (hate == 0 ) {
 				Debug.Log ("Switch to Avoid State");
 				npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Fear);
+			//憎むべきプレイヤーを探す
+			if (Vector3.Distance(npc.position, player.position) <= 300.0f)
+			{
+				Debug.Log("Switch to Chase State");
+					npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.ReachPlayer);
 			}
+		}
 		}
 		
 		public override void Act(Transform player, Transform npc)
@@ -31,6 +37,16 @@ namespace Asset.code.AI.CharacterState {
 			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
 			
 			npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+
+
+			float dist = Vector3.Distance(npc.position, destPos);
+			if (dist <= 200.0f)
+			{
+				Debug.Log("Switch to Attack state");
+				npc.GetComponent<NPCEnemyController>().SetTransition(Transition.ReachPlayer);
+			}
+			int hate = npc.GetComponent<NPCEnemyController> ().hate;
+
 		}
 	}
 }
