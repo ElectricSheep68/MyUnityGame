@@ -2,7 +2,7 @@
 using System.Collections;
 using Asset.code.AI.CharacterState;
 namespace Asset.code.AI {
-public class NPCEnemyController : AdvancedFSM //継承してる
+public class NPCEnemyController : AdvancedFSM 
 {
 	public GameObject Bullet;
 	public int health;
@@ -21,8 +21,8 @@ public class NPCEnemyController : AdvancedFSM //継承してる
 			print("プレーヤーが存在しません。タグ 'Player'　を追加してください。");
 		
 		//　戦車の砲台を取得
-		turret = gameObject.transform.GetChild(0).transform;
-		bulletSpawnPoint = turret.GetChild(0).transform;
+		//turret = gameObject.transform.GetChild(0).transform;
+		//bulletSpawnPoint = turret.GetChild(0).transform;
 		
 		// FSMを構築
 		ConstructFSM();

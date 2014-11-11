@@ -19,12 +19,6 @@ namespace Asset.code.AI.CharacterState {
 			if (hate == 0 ) {
 				Debug.Log ("Switch to Avoid State");
 				npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Fear);
-			//憎むべきプレイヤーを探す
-			if (Vector3.Distance(npc.position, player.position) <= 300.0f)
-			{
-				Debug.Log("Switch to Chase State");
-					npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.ReachPlayer);
-			}
 		}
 		}
 		
@@ -42,10 +36,14 @@ namespace Asset.code.AI.CharacterState {
 			float dist = Vector3.Distance(npc.position, destPos);
 			if (dist <= 200.0f)
 			{
-				Debug.Log("Switch to Attack state");
-				npc.GetComponent<NPCEnemyController>().SetTransition(Transition.ReachPlayer);
+				//砲台は常にプレーヤーに向きます。
+				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
+				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
+				
+				//射撃
+				npc.GetComponent<NPCEnemyController>().ShootBullet();
 			}
-			int hate = npc.GetComponent<NPCEnemyController> ().hate;
 
 		}
 	}

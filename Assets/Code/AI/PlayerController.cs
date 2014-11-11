@@ -6,7 +6,7 @@ namespace Asset.code.AI {
 public class playerController: MonoBehaviour 
 {
 	private Transform Turret;
-	private Transform bulletSpawnPoint;    
+	//private Transform bulletSpawnPoint;    
 	public float speed = 20.0f;
 	public float mass = 5.0f;
 	public float force = 50.0f;
@@ -18,7 +18,7 @@ public class playerController: MonoBehaviour
 	void Start () 
 	{	
 		Turret = gameObject.transform.GetChild(0).transform;
-		bulletSpawnPoint = Turret.GetChild(0).transform;
+		//bulletSpawnPoint = Turret.GetChild(0).transform;
 
 		mass = 5.0f;        
 		targetPoint = Vector3.zero;
