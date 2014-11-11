@@ -6,7 +6,7 @@ namespace Asset.code.AI.CharacterState {
 		public HateState(Transform[] wp) 
 		{ 
 			waypoints = wp;
-			stateID = FSMStateID.Patrolling;
+			stateID = FSMStateID.Trick;
 			
 			curRotSpeed = 1.0f;
 			curSpeed = 100.0f;
@@ -19,6 +19,7 @@ namespace Asset.code.AI.CharacterState {
 			if (hate == 0 ) {
 				Debug.Log ("Switch to Avoid State");
 				npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Fear);
+		
 		}
 		}
 		

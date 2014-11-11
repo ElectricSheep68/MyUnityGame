@@ -90,7 +90,7 @@ public abstract class FSMState
 	/// 次の策敵ポイントを指定します。乱数で動作します。
 	public void FindNextPoint()
 	{
-		//Debug.Log("Finding next point");
+		Debug.Log("Finding next point");
 		int rndIndex = Random.Range(0, waypoints.Length);
 		Vector3 rndPosition = Vector3.zero;
 		destPos = waypoints[rndIndex].position + rndPosition;

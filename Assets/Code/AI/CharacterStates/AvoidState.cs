@@ -6,7 +6,7 @@ public class AvoidState : FSMState
 	public AvoidState(Transform[] wp) 
 	{ 
 		waypoints = wp;
-		stateID = FSMStateID.Patrolling;
+		stateID = FSMStateID.Avoid;
 		
 		curRotSpeed = 1.0f;
 		curSpeed = 100.0f;

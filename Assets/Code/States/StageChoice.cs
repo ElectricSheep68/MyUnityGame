@@ -21,12 +21,12 @@ namespace Assets.Code.States {
 		}
 		public void Render() {
 			//描画等
-			if(GUI.Button(new Rect(100, 100, 100, 50), "Stage01")) {
+			if(GUI.Button(new Rect(50, 100, 100, 50), "Stage01")) {
 				Application.LoadLevel("Stage01");
 				Time.timeScale = 1;
 				manager.SwitchState(new Stage01(manager));    
 			}
-				if(GUI.Button(new Rect(100, 110, 100, 50), "comingsoon")) {
+				if(GUI.Button(new Rect(50, 210, 100, 50), "comingsoon")) {
 					Application.LoadLevel("Stage01");
 					Time.timeScale = 1;
 					manager.SwitchState(new Stage01(manager));    
