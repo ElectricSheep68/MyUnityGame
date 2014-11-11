@@ -9,21 +9,21 @@ public class IdolState : FSMState
 		stateID = FSMStateID.Patrolling;
 		
 		curRotSpeed = 1.0f;
-		curSpeed = 100.0f;
+		curSpeed = 1.0f;
 	}
 	
 	public override void Reason(Transform player, Transform npc)
 	{
-				int health = npc.GetComponent<NPCEnemyController> ().health;
+		int health = npc.GetComponent<NPCEnemyController> ().health;
 				//体力が少しでも減ったら逃げモードに
-				if (health < 100) {
-						Debug.Log ("Switch to Avoid State");
-						npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
-				}
+		if (health < 100) {
+		Debug.Log ("Switch to Avoid State");
+		npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
+		}
 	
-				int hate = npc.GetComponent<NPCEnemyController> ().hate;
-				//憎しみがたまると攻撃
-				if (hate > 100) {
+		int hate = npc.GetComponent<NPCEnemyController> ().hate;
+		//憎しみがたまると攻撃
+		if (hate > 100) {
 						Debug.Log ("Switch to hate State");
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
@@ -39,7 +39,7 @@ public class IdolState : FSMState
 	{
 		//Find another random patrol point if the current point is reached
 		//ターゲット地点に到着した場合に、パトロール地点を再度策定
-		if (Vector3.Distance(npc.position, destPos) <= 100.0f)
+		if (Vector3.Distance(npc.position, destPos) <= 1.0f)
 		{
 			Debug.Log("Reached to the destination point\ncalculating the next point");
 			FindNextPoint();

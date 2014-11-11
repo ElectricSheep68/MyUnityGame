@@ -9,7 +9,7 @@ public class LoiterState : FSMState
 		stateID = FSMStateID.Patrolling;
 		
 		curRotSpeed = 1.0f;
-		curSpeed = 100.0f;
+		curSpeed = 5.0f;
 	}
 	
 	public override void Reason(Transform player, Transform npc)
@@ -39,7 +39,7 @@ public class LoiterState : FSMState
 	{
 		//Find another random patrol point if the current point is reached
 		//ターゲット地点に到着した場合に、パトロール地点を再度策定
-		if (Vector3.Distance(npc.position, destPos) <= 100.0f)
+		if (Vector3.Distance(npc.position, destPos) <= 3.0f)
 		{
 			Debug.Log("Reached to the destination point\ncalculating the next point");
 			FindNextPoint();

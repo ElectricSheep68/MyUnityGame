@@ -9,7 +9,7 @@ namespace Asset.code.AI.CharacterState {
 			stateID = FSMStateID.Trick;
 			
 			curRotSpeed = 1.0f;
-			curSpeed = 100.0f;
+			curSpeed = 10.0f;
 		}
 		
 		public override void Reason(Transform player, Transform npc)
@@ -35,7 +35,7 @@ namespace Asset.code.AI.CharacterState {
 
 
 			float dist = Vector3.Distance(npc.position, destPos);
-			if (dist <= 200.0f)
+			if (dist <= 5.0f)
 			{
 				//砲台は常にプレーヤーに向きます。
 				Transform turret = npc.GetComponent<NPCEnemyController>().turret;

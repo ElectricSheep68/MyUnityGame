@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 		AvoidObstacles(ref dir);
 		
 		//目標点に到達後は停止
-		if(Vector3.Distance(targetPoint, transform.position) < 3.0f)
+		if(Vector3.Distance(targetPoint, transform.position) < 1f)
 			return;
 		
 		//速度をデルタタイムで標準化します。
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 		
 		//操作対象の向きを変えます（回転）
 		var rot = Quaternion.LookRotation(dir);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rot, 5.0f *  Time.deltaTime);
+		transform.rotation = Quaternion.Slerp(transform.rotation, rot, 10.0f *  Time.deltaTime);
 		
 		//操作対象を動かします
 		transform.position += transform.forward * curSpeed;
