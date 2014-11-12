@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.code.AI.CharacterState;
-namespace Assets.code.AI {
+namespace Saiyaku{
 	public class NPCEnemyController : AdvancedFSM 
 	{
 		public GameObject Bullet;

@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using Assets.Code.Interfaces;
-using Assets.Code.States;
 
-namespace Assets.Code.Interfaces
+namespace Saiyaku
 {
 	public interface IState{
 		void StateUpdate();

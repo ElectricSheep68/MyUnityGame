@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using Assets.Code.States;
-using Assets.Code.Interfaces;
 
-namespace Assets.Code.States {
+namespace Saiyaku{
 	public class StageChoice : IState {
 		private StateManager manager;
 		

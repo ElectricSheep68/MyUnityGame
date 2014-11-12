@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using Assets.Code.States;
-using Assets.Code.Interfaces;
-using Assets.code.AI.CharacterState;
 
+namespace Saiyaku{
 public class StateManager : MonoBehaviour
 {
 	// 現在のゲームの状態を保持
@@ -41,4 +39,5 @@ public class StateManager : MonoBehaviour
 	{
 		activeState = newState;
 	}
+}
 }

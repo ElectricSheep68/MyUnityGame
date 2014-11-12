@@ -1,59 +1,92 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Saiyaku{
 public class PlayerController : MonoBehaviour 
 {
-	public float speed = 10.0f;
-	public float mass = 5.0f;
-	public float force = 30.0f;
-	public float minimumDistToAvoid = 1.0f;
+	public GameObject Bullet;
 	
-	//Actual speed of the vehicle 
-	private float curSpeed;
-	private Vector3 targetPoint;
+	private Transform Turret;
+	private Transform bulletSpawnPoint;    
+	private float curSpeed, targetSpeed, rotSpeed;
+	private float turretRotSpeed = 10.0f;
+	private float maxForwardSpeed = 300.0f;
+	private float maxBackwardSpeed = -300.0f;
 	
-	// Use this for initialization
-	void Start () 
+	protected float shootRate;
+	protected float elapsedTime;
+	
+	void Start()
 	{
-		mass = 5.0f;        
-		targetPoint = Vector3.zero;
+		rotSpeed = 150.0f;
+		
+		Turret = gameObject.transform.GetChild(0).transform;
+		bulletSpawnPoint = Turret.GetChild(0).transform;
 	}
 	
-	void OnGUI()
+	void OnEndGame()
 	{
-		GUILayout.Label("操作対象の目標点をクリックしてください");
+		this.enabled = false;
 	}
 	
-	// Update is called once per frame
-	void Update () 
+	void Update()
 	{
+		UpdateControl();
+		UpdateWeapon();
+	}
+	
+	void UpdateControl()
+	{
+		Plane playerPlane = new Plane(Vector3.up, transform.position + new Vector3(0, 0, 0));
 		
-		RaycastHit hit;
-		var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Ray RayCast = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
-		if(Input.GetMouseButtonDown(0) && Physics.Raycast(ray, out hit, 100.0f))
+		float HitDist = 0;
+		
+		if (playerPlane.Raycast(RayCast, out HitDist))
 		{
-			targetPoint = hit.point;
+			Vector3 RayHitPoint = RayCast.GetPoint(HitDist);
+			
+			Quaternion targetRotation = Quaternion.LookRotation(RayHitPoint - transform.position);
+			Turret.transform.rotation = Quaternion.Slerp(Turret.transform.rotation, targetRotation, Time.deltaTime * turretRotSpeed);
 		}
 		
-		//目標点への方向ベクトル
-		Vector3 dir = (targetPoint - transform.position);
-		dir.Normalize();
-
-		//目標点に到達後は停止
-		if(Vector3.Distance(targetPoint, transform.position) < 3f)
-			return;
+		if (Input.GetKey(KeyCode.W))
+		{
+			targetSpeed = maxForwardSpeed;
+		}
+		else if (Input.GetKey(KeyCode.S))
+		{
+			targetSpeed = maxBackwardSpeed;
+		}
+		else
+		{
+			targetSpeed = 0;
+		}
 		
-		//速度をデルタタイムで標準化します。
-		curSpeed = speed * Time.deltaTime;
+		if (Input.GetKey(KeyCode.A))
+		{
+			transform.Rotate(0, -rotSpeed * Time.deltaTime, 0.0f);
+		}
+		else if (Input.GetKey(KeyCode.D))
+		{
+			transform.Rotate(0, rotSpeed * Time.deltaTime, 0.0f);
+		}
 		
-		//操作対象の向きを変えます（回転）
-		var rot = Quaternion.LookRotation(dir);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rot, 10.0f *  Time.deltaTime);
-		
-		//操作対象を動かします
-		transform.position += transform.forward * curSpeed;
+		curSpeed = Mathf.Lerp(curSpeed, targetSpeed, 7.0f * Time.deltaTime);
+		transform.Translate(Vector3.forward * Time.deltaTime * curSpeed);    
 	}
 	
-
+	void UpdateWeapon()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			if (elapsedTime >= shootRate)
+			{
+				elapsedTime = 0.0f;
+				
+				Instantiate(Bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+			}
+		}
 	}
+}
+}

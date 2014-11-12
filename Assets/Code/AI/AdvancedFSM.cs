@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+namespace Saiyaku{
 /// @http://creativecommons.org/licenses/by-sa/3.0/
 
 public enum Transition
@@ -129,4 +129,5 @@ public class AdvancedFSM : FSM
 			}
 		}
 	}
+}
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Assets.code.AI.CharacterState {
+namespace Saiyaku {
 	public class HateState : FSMState
 	{
 		public HateState(Transform[] wp) 

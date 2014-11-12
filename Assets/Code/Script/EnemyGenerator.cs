@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Assets.Code.Script{
+namespace Saiyaku{
 public class EnemyGenerator : MonoBehaviour {
 	//プレハブを定義
 	public GameObject prefab;

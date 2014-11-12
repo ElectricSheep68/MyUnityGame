@@ -10,7 +10,7 @@ using System.Collections.Generic;
 /// ある状態のときに、遷移が発生するときに、どの状態に遷移すべきかを記述しています。
 /// Reasonメソッド： どの遷移が実施されるか指定します。
 /// Actメソッド:　現状態での処理を記述します。
-
+namespace Saiyaku{
 public abstract class FSMState
 {
 	protected Dictionary<Transition, FSMStateID> map = new Dictionary<Transition, FSMStateID>();
@@ -106,5 +106,6 @@ public abstract class FSMState
 			return true;
 		
 		return false;
+	}
 	}
 }

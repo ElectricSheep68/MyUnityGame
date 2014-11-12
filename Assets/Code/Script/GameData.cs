@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Assets.Code.States;
-using Assets.Code.Interfaces;
-using Assets.code.AI.CharacterState;
 
+namespace Saiyaku{
 public class GameData : MonoBehaviour {
 	
 	public Texture2D beginTexture;
@@ -15,4 +13,5 @@ public class GameData : MonoBehaviour {
 	{
 //		beginScore = score;
 	}
+}
 }

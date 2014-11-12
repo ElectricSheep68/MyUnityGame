@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Saiyaku{
 public class NPCSaiyakucontroller : MonoBehaviour {
 
 	// Use this for initialization
@@ -12,4 +12,5 @@ public class NPCSaiyakucontroller : MonoBehaviour {
 	void Update () {
 	
 	}
+}
 }

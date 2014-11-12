@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Assets.code.AI.CharacterState {
+namespace Saiyaku {
 public class AvoidState : FSMState
 {
 	public AvoidState(Transform[] wp) 

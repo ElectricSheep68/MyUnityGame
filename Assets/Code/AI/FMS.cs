@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Saiyaku{
 public class FSM : MonoBehaviour 
 {
 	protected Transform playerTransform;
@@ -39,4 +39,5 @@ public class FSM : MonoBehaviour
 	{
 		FSMFixedUpdate();
 	}    
+}
 }
