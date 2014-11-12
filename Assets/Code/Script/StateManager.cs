@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Assets.Code.States;
 using Assets.Code.Interfaces;
+using Assets.code.AI.CharacterState;
 
 public class StateManager : MonoBehaviour
 {

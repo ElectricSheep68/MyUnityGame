@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Asset.code.AI.CharacterState {
+namespace Assets.code.AI.CharacterState {
 public class LoiterState : FSMState
 {
 	public LoiterState(Transform[] wp) 

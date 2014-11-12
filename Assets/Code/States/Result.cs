@@ -15,7 +15,7 @@ namespace Assets.Code.States{
 			public void Render() {
 			//描画等
 			if(GUI.Button(new Rect(100, 100, 100, 50), "Restart")) {
-				Application.LoadLevel("StartScene");
+				Application.LoadLevel("Start");
 				Time.timeScale = 1;
 				manager.SwitchState(new StartScene(manager));    
 			}

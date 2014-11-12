@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Code.States;
 using Assets.Code.Interfaces;
+using Assets.code.AI.CharacterState;
 
 public class GameData : MonoBehaviour {
 	

@@ -12,24 +12,17 @@ namespace Assets.Code.States{
 			manager = stateManager;
 			Time.timeScale = 0;
 		}
-		
-		public void StateUpdate() {
-			//更新処理
-			if(Input.GetKeyUp(KeyCode.Return)) { // Returnキーを押すとStageChoisに遷移
-				Application.LoadLevel("StageChoice");
-				Debug.Log("Start");
-				manager.SwitchState(new StageChoice(manager));
-			}
+		public void StateUpdate(){
+
 		}
-		
-		// Playボタンを生成して、ボタンが押されたときに、Stage1に遷移
 		public void Render() {
 			//描画等
-			if(GUI.Button(new Rect(50, 50, 50, 50), "Stat")) {
+			if(GUI.Button(new Rect(110, 100, 50, 50), "Stat")) {
 				Application.LoadLevel("StageChoice");
 				Time.timeScale = 1;
 				manager.SwitchState(new StageChoice(manager));    
 			}
+			
 		}
 	}
 }

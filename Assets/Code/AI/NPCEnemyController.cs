@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Asset.code.AI.CharacterState;
-namespace Asset.code.AI {
+using Assets.code.AI.CharacterState;
+namespace Assets.code.AI {
 	public class NPCEnemyController : AdvancedFSM 
 	{
 		public GameObject Bullet;
