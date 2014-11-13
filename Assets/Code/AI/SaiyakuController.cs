@@ -33,8 +33,10 @@ namespace Saiyaku{
 		
 		protected override void FSMFixedUpdate()
 		{
-			CurrentState.Reason(playerTransform, transform,enemyTransform, transform,wallTransform, transform);
-			CurrentState.Act(playerTransform, transform,enemyTransform, transform,wallTransform, transform);
+			CurrentState.Reason(playerTransform, transform,enemyTransform,wallTransform);
+			CurrentState.Act(playerTransform, transform,enemyTransform,wallTransform);
+			CurrentState.Reason(enemyTransform, transform,enemyTransform,wallTransform);
+			CurrentState.Act(enemyTransform, transform,enemyTransform,wallTransform);
 		}
 		
 		public void SetTransition(Transition t) 
@@ -58,12 +60,19 @@ namespace Saiyaku{
 			GenocideState Genocide = new GenocideState(waypoints);
 			Genocide.AddTransition(Transition.Genocide, FSMStateID.Kill);
 			Genocide.AddTransition(Transition.Detention, FSMStateID.Stop);
-			
+			Genocide.AddTransition(Transition.NoMind, FSMStateID.Idol);
 			DetentionState Detention = new DetentionState(waypoints);
 			Detention.AddTransition(Transition.Detention, FSMStateID.Stop);
 			Detention.AddTransition(Transition.Genocide, FSMStateID.Kill);
+			Detention.AddTransition(Transition.NoMind, FSMStateID.Idol);
+
+			IdolState Idol = new IdolState(waypoints);
+			Idol.AddTransition(Transition.NoMind, FSMStateID.Idol);
+			Idol.AddTransition(Transition.Genocide, FSMStateID.Kill);
+			Idol.AddTransition(Transition.Detention, FSMStateID.Stop);
 
 			AddFSMState(Genocide);
+			AddFSMState(Idol);
 			AddFSMState(Detention);
 		}
 

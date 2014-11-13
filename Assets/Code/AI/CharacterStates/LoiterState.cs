@@ -12,7 +12,7 @@ public class LoiterState : FSMState
 		curSpeed = 5.0f;
 	}
 	
-	public override void Reason(Transform player, Transform npc)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		int health = npc.GetComponent<NPCEnemyController> ().health;
 		//体力が少しでも減ったら逃げモードに
@@ -35,7 +35,7 @@ public class LoiterState : FSMState
 		}
 	}
 	
-	public override void Act(Transform player, Transform npc)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		//Find another random patrol point if the current point is reached
 		//ターゲット地点に到着した場合に、パトロール地点を再度策定

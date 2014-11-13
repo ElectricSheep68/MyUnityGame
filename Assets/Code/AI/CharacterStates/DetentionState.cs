@@ -12,17 +12,24 @@ namespace Saiyaku {
 			curSpeed = 10.0f;
 		}
 		
-		public override void Reason(Transform player, Transform npc,Transform wall)
-		{
-			float dist = Vector3.Distance(npc.position, destPos);
-			if (dist <= 200.0f)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
+		{	
+
+			float enemyDist = Vector3.Distance(npc.position,enemy.position);
+			if (enemyDist <= 50.0f)
+			{
+				Debug.Log("Switch to Genosid state");
+				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Genocide);
+			}
+			float playerDist = Vector3.Distance(npc.position,player.position);
+			if (playerDist <= 50.0f)
 			{
 				Debug.Log("Switch to Genosid state");
 				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Genocide);
 			}
 		}
 		
-		public override void Act(Transform player, Transform npc,Transform wall)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 		{	
 			RaycastHit hit;
 			
@@ -34,8 +41,7 @@ namespace Saiyaku {
 				Vector3 hitNormal = hit.normal;
 				hitNormal.y = 0.0f; //Don't want to move in Y-Space
 
-				//砲台は常にプレーヤーに向きます。
-				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Transform turret = npc.GetComponent<SaiyakuController>().turret;
 				Quaternion turretRotation = Quaternion.LookRotation(hit.normal - turret.position);
 				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
 				
@@ -43,28 +49,7 @@ namespace Saiyaku {
 				npc.GetComponent<SaiyakuController>().ShootBullet();
 
 			}
-			
-			destPos = player.position;
-			Vector3 avoidpos = (destPos - npc.position) * -1;
-			
-			Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
-			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
-			
-			npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
-			
-			
-			float dist = Vector3.Distance(npc.position, destPos);
-			if (dist <= 5.0f)
-			{
-				//砲台は常にプレーヤーに向きます。
-				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
-				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
-				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
-				
-				//射撃
-				npc.GetComponent<NPCEnemyController>().ShootBullet();
-			}
-			
+
 		}
 	}
 }

@@ -34,8 +34,8 @@ namespace Saiyaku{
 		
 		protected override void FSMFixedUpdate()
 		{
-			CurrentState.Reason(playerTransform, transform);
-			CurrentState.Act(playerTransform, transform);
+			CurrentState.Reason(playerTransform, transform,enemyTransform,wallTransform);
+			CurrentState.Act(playerTransform, transform,enemyTransform,wallTransform);
 		}
 		
 		public void SetTransition(Transition t) 
