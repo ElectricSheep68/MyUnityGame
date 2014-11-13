@@ -37,6 +37,7 @@ public class IdolState : FSMState
 
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
+			npc.rigidbody.velocity = Vector3.zero;
 
 }
 }

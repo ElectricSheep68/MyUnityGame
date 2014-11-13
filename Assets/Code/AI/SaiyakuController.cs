@@ -35,8 +35,6 @@ namespace Saiyaku{
 		{
 			CurrentState.Reason(playerTransform, transform,enemyTransform,wallTransform);
 			CurrentState.Act(playerTransform, transform,enemyTransform,wallTransform);
-			CurrentState.Reason(enemyTransform, transform,enemyTransform,wallTransform);
-			CurrentState.Act(enemyTransform, transform,enemyTransform,wallTransform);
 		}
 		
 		public void SetTransition(Transition t) 

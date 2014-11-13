@@ -14,18 +14,17 @@ namespace Saiyaku {
 		
 		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 		{	
-
 			float enemyDist = Vector3.Distance(npc.position,enemy.position);
-			if (enemyDist <= 50.0f)
+			float playerDist = Vector3.Distance(npc.position,player.position);
+			if (enemyDist <= 50.0f || playerDist <= 50.0f)
 			{
 				Debug.Log("Switch to Genosid state");
 				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Genocide);
 			}
-			float playerDist = Vector3.Distance(npc.position,player.position);
-			if (playerDist <= 50.0f)
+			if (enemyDist > 50.0f && playerDist > 50.0f)
 			{
-				Debug.Log("Switch to Genosid state");
-				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Genocide);
+				Debug.Log("Switch to Idol state");
+				npc.GetComponent<SaiyakuController>().SetTransition(Transition.NoMind);
 			}
 		}
 		
