@@ -5,8 +5,7 @@ public class PlayerController : MonoBehaviour
 	{
 		public float speed = 5.0f;
 		public float mass = 5.0f;
-		public float force = 1.0f;
-		public float minimumDistToAvoid = 1.0f;
+		public float force = 10.0f;
 		public float playerpower = 5.0f;
 		
 		//Actual speed of the vehicle 
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour
 			//目標点への方向ベクトル
 			Vector3 dir = (targetPoint - transform.position);
 			dir.Normalize();
-
 			//目標点に到達後は停止
 			if(Vector3.Distance(targetPoint, transform.position) < 2.5f)
 				return;
@@ -46,23 +44,32 @@ public class PlayerController : MonoBehaviour
 			var rot = Quaternion.LookRotation(dir);
 			rot.z = 0;
 			rot.x = 0;
-			transform.rotation = Quaternion.Slerp(transform.rotation, rot, 50.0f *  Time.deltaTime);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rot, 10.0f *  Time.deltaTime);
 			
 			//操作対象を動かします
 			transform.position += transform.forward * curSpeed;
 
+			//ぶれをなくすために完全にとめます
 			rigidbody.velocity = Vector3.zero;
 
 			//敵にぶつかったら敵をぶっ飛ばします
 			}
-			void OnCollisionEnter(Collision collision){
-				if(collision.collider.tag == "Enemy"){
+		void OnCollisionEnter(Collision collision){
+			if(collision.collider.tag == "Enemy"){
 				Debug.Log ("hit");
 				GameObject enemy =collision.gameObject;
 				enemy.rigidbody.AddForce(new Vector3(0, 0, 1f) * playerpower);
-
-				}
-		
 			}
+				//壁にぶつかったら止まります。
+			if(collision.collider.tag == "Wall"){
+					targetPoint = transform.position;
+			}
+			//災厄に触れたら大ダメージ
+			if(collision.collider.tag == "Saiyaku"){
+
+			}
+	
+
+		}
 	}
 }
