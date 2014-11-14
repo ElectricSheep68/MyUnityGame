@@ -11,7 +11,7 @@ namespace Saiyaku{
 		public PlayerController (){
 		}
 		
-		public void SetCameraMoverController(IPlayerCtrl playerController) {
+		public void SetPlayerController(IPlayerCtrl playerController) {
 			this.playerController = playerController;
 		}
 	}
