@@ -23,16 +23,22 @@ namespace Saiyaku.test
 		[TearDown] public void Cleanup()
 		{
 		}
-		
+
 		[Test]
-		[Category ("Click Test 1")]
-		public void ClickFTest() {
+		[Category ("Click Test: A")]
+		public void ClickWTest() {
+			
+		}
+
+		[Test]
+		[Category ("Click Test: W")]
+		public void ClickWTest() {
 
 		}
 		
 		[Test]
-		[Category ("Click Test 2")]
-		public void ClickRTest() {
+		[Category ("Click Test: D")]
+		public void ClickDTest() {
 
 		}
 		
@@ -44,7 +50,7 @@ namespace Saiyaku.test
 			var player = Substitute.For<PlayerController> ();
 
 			player.SetPlayerController (iplayer);
-			return mover;
+			return player;
 		}
 	}
 }
