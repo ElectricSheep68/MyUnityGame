@@ -8,48 +8,64 @@ namespace Saiyaku {
 			waypoints = wp;
 			stateID = FSMStateID.Kill;
 			
-			curRotSpeed = 1.0f;
-			curSpeed = 10.0f;
+			curRotSpeed = 10.0f;
 		}
 		
 		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 		{	
 			
-			float enemyDist = Vector3.Distance(npc.position,enemy.position);
-			float playerDist = Vector3.Distance(npc.position,player.position);
-			if (enemyDist <= 50.0f || playerDist <= 50.0f)
+			float wallDist = Vector3.Distance(npc.position,enemy.position);
+			if (wallDist <1.0f)
 			{
-				Debug.Log("Switch to Genosid state");
-				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Genocide);
-			}
-			if (enemyDist > 50.0f && playerDist > 50.0f)
-			{
-				Debug.Log("Switch to Idol state");
-				npc.GetComponent<SaiyakuController>().SetTransition(Transition.NoMind);
+				Debug.Log("Switch to Detention state");
+				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Detention);
 			}
 		}
 		
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 		{	
-			RaycastHit hit;
+		
+			Vector3 avoidposP = (player.position - npc.position) * -1;
 			
-			//Only detect layer 8 (Obstacles)
-			int layerMask = 1 << 8;
-			if (Physics.Raycast(npc.transform.position, npc.transform.forward, out hit, 20f, layerMask))
+			Quaternion targetRotationP = Quaternion.LookRotation(avoidposP);
+			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotationP, Time.deltaTime * curRotSpeed);
+			
+			npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+
+			float distP = Vector3.Distance(npc.position, player.position);
+
+			Vector3 avoidposE = (enemy.position - npc.position) * -1;
+			
+			Quaternion targetRotationE = Quaternion.LookRotation(avoidposE);
+			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotationE, Time.deltaTime * curRotSpeed);
+			
+			npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+
+			float distE = Vector3.Distance(npc.position, player.position);
+
+			if (distE <= 5.0f && distE < distP)
 			{
-				//障害物との接触点の垂直ポイントを取得
-				Vector3 hitNormal = hit.normal;
-				hitNormal.y = 0.0f; //Don't want to move in Y-Space
-				
-				Transform turret = npc.GetComponent<SaiyakuController>().turret;
-				Quaternion turretRotation = Quaternion.LookRotation(hit.normal - turret.position);
+				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
 				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
 				
 				//射撃
-				npc.GetComponent<SaiyakuController>().ShootBullet();
-				
+				npc.GetComponent<NPCEnemyController>().ShootBullet();
 			}
-			
+			if (distP <= 5.0f && distE > distP)
+			{
+				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
+				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
+				
+				//射撃
+				npc.GetComponent<NPCEnemyController>().ShootBullet();
+			}
+			if (distP >= 5.0f && distE >= 5f){
+
+				npc.rigidbody.velocity = Vector3.zero;
+
+			}
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Saiyaku{
 		{
 			elapsedTime = 0.0f;
 			shootRate = 2.0f;
-			GameObject objPlayer = GameObject.FindGameObjectWithTag("player");
+			GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
 			playerTransform = objPlayer.transform;
 
 			GameObject objEnemy = GameObject.FindGameObjectWithTag("Enemy");
@@ -64,13 +64,7 @@ namespace Saiyaku{
 			Detention.AddTransition(Transition.Genocide, FSMStateID.Kill);
 			Detention.AddTransition(Transition.NoMind, FSMStateID.Idol);
 
-			IdolState Idol = new IdolState(waypoints);
-			Idol.AddTransition(Transition.NoMind, FSMStateID.Idol);
-			Idol.AddTransition(Transition.Genocide, FSMStateID.Kill);
-			Idol.AddTransition(Transition.Detention, FSMStateID.Stop);
-
 			AddFSMState(Genocide);
-			AddFSMState(Idol);
 			AddFSMState(Detention);
 		}
 

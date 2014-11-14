@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 		public float mass = 5.0f;
 		public float force = 1.0f;
 		public float minimumDistToAvoid = 1.0f;
+		public float playerpawr = 5.0f;
 		
 		//Actual speed of the vehicle 
 		private float curSpeed;
@@ -57,7 +58,8 @@ public class PlayerController : MonoBehaviour
 				Vector3 enemypos = collision.gameObject.transform.position;
 				Vector3 playerpos = transform.position;
 				Vector3 direction = playerpos - enemypos;
-				
+				GameObject enemy =collision.gameObject;
+				enemy.rigidbody.AddForce(direction * playerpawr);
 
 				}
 		
