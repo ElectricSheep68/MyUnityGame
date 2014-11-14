@@ -25,7 +25,7 @@ namespace Saiyaku{
 
 		void Start()
 		{
-			controller.rotSpeed = 150.0f;
+			controller.setRotSpeed(150.0f);
 			
 			SetBulletSpawnPoint ();
 		}
