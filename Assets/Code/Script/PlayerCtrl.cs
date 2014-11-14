@@ -95,5 +95,9 @@ namespace Saiyaku{
 				}
 			}
 		}
+
+		void SetBulletSpawnPoint() {
+
+		}
 	}
 }
