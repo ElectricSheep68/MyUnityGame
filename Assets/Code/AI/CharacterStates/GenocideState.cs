@@ -15,7 +15,7 @@ namespace Saiyaku {
 		{	
 			
 			float wallDist = Vector3.Distance(npc.position,enemy.position);
-			if (wallDist <1.0f)
+			if (wallDist <0f)
 			{
 				Debug.Log("Switch to Detention state");
 				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Detention);

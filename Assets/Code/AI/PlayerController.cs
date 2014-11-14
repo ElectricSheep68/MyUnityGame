@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 		public float mass = 5.0f;
 		public float force = 1.0f;
 		public float minimumDistToAvoid = 1.0f;
-		public float playerpawr = 5.0f;
+		public float playerpower = 5.0f;
 		
 		//Actual speed of the vehicle 
 		private float curSpeed;
@@ -51,15 +51,15 @@ public class PlayerController : MonoBehaviour
 			//操作対象を動かします
 			transform.position += transform.forward * curSpeed;
 
+			rigidbody.velocity = Vector3.zero;
+
 			//敵にぶつかったら敵をぶっ飛ばします
 			}
 			void OnCollisionEnter(Collision collision){
 				if(collision.collider.tag == "Enemy"){
-				Vector3 enemypos = collision.gameObject.transform.position;
-				Vector3 playerpos = transform.position;
-				Vector3 direction = playerpos - enemypos;
+				Debug.Log ("hit");
 				GameObject enemy =collision.gameObject;
-				enemy.rigidbody.AddForce(direction * playerpawr);
+				enemy.rigidbody.AddForce(new Vector3(0, 0, 1f) * playerpower);
 
 				}
 		

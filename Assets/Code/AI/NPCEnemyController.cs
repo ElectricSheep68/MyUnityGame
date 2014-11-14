@@ -16,6 +16,11 @@ namespace Saiyaku{
 			GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
 			playerTransform = objPlayer.transform;
 			
+			GameObject objEnemy = GameObject.FindGameObjectWithTag("Enemy");
+			enemyTransform = objEnemy.transform;
+			
+			GameObject objWall = GameObject.FindGameObjectWithTag("Wall");
+			wallTransform = objWall.transform;
 			if (!playerTransform)
 				print("プレーヤーが存在しません。タグ 'Player'　を追加してください。");
 

@@ -7,7 +7,6 @@ namespace Saiyaku {
 		{ 
 			waypoints = wp;
 			stateID = FSMStateID.Stop;
-			
 			curRotSpeed = 1.0f;
 		}
 		
