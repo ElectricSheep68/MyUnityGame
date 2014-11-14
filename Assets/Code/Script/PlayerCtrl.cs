@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 namespace Saiyaku{
 	
-	public class PlayerCtrl : MonoBehaviour 
+	public class PlayerCtrl : MonoBehaviour, IPlayerCtrl
 	{
 		public GameObject Bullet;
 		
