@@ -12,7 +12,7 @@ namespace Saiyaku {
 			curSpeed = 10.0f;
 		}
 		
-		public override void Reason(Transform player, Transform npc)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 		{
 			int hate = npc.GetComponent<NPCEnemyController> ().hate;
 			//憎しみが消えるとおびえる
@@ -23,7 +23,7 @@ namespace Saiyaku {
 		}
 		}
 		
-		public override void Act(Transform player, Transform npc)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 		{
 			destPos = player.position;
 			Vector3 avoidpos = (destPos - npc.position) * -1;

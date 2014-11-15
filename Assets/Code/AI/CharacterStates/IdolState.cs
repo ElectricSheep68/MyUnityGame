@@ -7,12 +7,11 @@ public class IdolState : FSMState
 	{ 
 		waypoints = wp;
 		stateID = FSMStateID.Patrolling;
-		
 		curRotSpeed = 1.0f;
 		curSpeed = 1.0f;
 	}
 	
-	public override void Reason(Transform player, Transform npc)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		int health = npc.GetComponent<NPCEnemyController> ().health;
 				//体力が少しでも減ったら逃げモードに
@@ -23,34 +22,30 @@ public class IdolState : FSMState
 	
 		int hate = npc.GetComponent<NPCEnemyController> ().hate;
 		//憎しみがたまると攻撃
-		if (hate > 100) {
-						Debug.Log ("Switch to hate State");
+		if (hate > 10) {
+			Debug.Log ("Switch to hate State");
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
-		//気まぐれに待機する。
-		int random = (Random.Range(0,6));
-		if (random > 5) {
-			Debug.Log ("Switch to loiter State");
-			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind2);
-		}
+		//気まぐれに動く。
+			float accum =+ Time.deltaTime;
+			int feel;
+			if(accum > Random.Range(10,40)){
+
+				feel= Random.Range (0, 6);
+				if(feel > 5){				
+					Debug.Log ("Switch to Loiter State");
+					npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind2);
+
+				}
+				accum = 0f;
+			}
 	}
 
-	public override void Act(Transform player, Transform npc)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
-		//Find another random patrol point if the current point is reached
-		//ターゲット地点に到着した場合に、パトロール地点を再度策定
-		if (Vector3.Distance(npc.position, destPos) <= 1.0f)
-		{
-			Debug.Log("Reached to the destination point\ncalculating the next point");
-			FindNextPoint();
-		}
-		
-		//ターゲットに回転
-		Quaternion targetRotation = Quaternion.LookRotation(destPos - npc.position);
-		npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
-		
-		//前進
-		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
-	}
+			npc.rigidbody.velocity = Vector3.zero;
+
+
+}
 }
 }

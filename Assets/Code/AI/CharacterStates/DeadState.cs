@@ -8,12 +8,12 @@ public class DeadState : FSMState
 		stateID = FSMStateID.Dead;
 	}
 	
-	public override void Reason(Transform player, Transform npc)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		
 	}
 	
-	public override void Act(Transform player, Transform npc)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		
 	}

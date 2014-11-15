@@ -15,6 +15,8 @@ public enum Transition
 	Hate,
 	NoMind,
 	NoMind2,
+	Genocide,
+	Detention,
 }
 
 public enum FSMStateID
@@ -28,6 +30,8 @@ public enum FSMStateID
 	Trick,
 	Idol,
 	Loiter,
+	Kill,
+	Stop,
 }
 
 public class AdvancedFSM : FSM 

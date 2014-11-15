@@ -4,7 +4,9 @@ namespace Saiyaku{
 public class FSM : MonoBehaviour 
 {
 	protected Transform playerTransform;
-	
+	protected Transform enemyTransform;
+	protected Transform saiyakuTransform;
+	protected Transform wallTransform;
 	//NPCの次の到達点
 	protected Vector3 destPos;
 	

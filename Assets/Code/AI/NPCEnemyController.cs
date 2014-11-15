@@ -16,12 +16,16 @@ namespace Saiyaku{
 			GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
 			playerTransform = objPlayer.transform;
 			
+			GameObject objEnemy = GameObject.FindGameObjectWithTag("Enemy");
+			enemyTransform = objEnemy.transform;
+			
+			GameObject objWall = GameObject.FindGameObjectWithTag("Wall");
+			wallTransform = objWall.transform;
 			if (!playerTransform)
 				print("プレーヤーが存在しません。タグ 'Player'　を追加してください。");
-			
-			//　戦車の砲台を取得
-			//turret = gameObject.transform.GetChild(0).transform;
-			//bulletSpawnPoint = turret.GetChild(0).transform;
+
+			turret = gameObject.transform.GetChild(0).transform;
+			bulletSpawnPoint = turret.GetChild(0).transform;
 			
 			// FSMを構築
 			ConstructFSM();
@@ -35,8 +39,8 @@ namespace Saiyaku{
 		
 		protected override void FSMFixedUpdate()
 		{
-			CurrentState.Reason(playerTransform, transform);
-			CurrentState.Act(playerTransform, transform);
+			CurrentState.Reason(playerTransform, transform,enemyTransform,wallTransform);
+			CurrentState.Act(playerTransform, transform,enemyTransform,wallTransform);
 		}
 		
 		public void SetTransition(Transition t) 

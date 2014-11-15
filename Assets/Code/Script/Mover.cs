@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace Saiyaku{
-public class MarchState : MonoBehaviour {
+
+public class Mover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,5 +12,4 @@ public class MarchState : MonoBehaviour {
 	void Update () {
 	
 	}
-}
 }
