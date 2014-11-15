@@ -8,7 +8,7 @@ namespace Saiyaku{
 		
 		private Transform Turret;
 		private Transform bulletSpawnPoint;    
-
+		private float rotSpeed=10f;
 		private float curSpeed, targetSpeed;
 		private float turretRotSpeed = 10.0f;
 		private float maxForwardSpeed = 300.0f;
@@ -96,7 +96,7 @@ namespace Saiyaku{
 			}
 		}
 
-		void SetBulletSpawnPoint() {
+		public void SetBulletSpawnPoint() {
 			Turret = gameObject.transform.GetChild(0).transform;
 			bulletSpawnPoint = Turret.GetChild(0).transform;
 		}

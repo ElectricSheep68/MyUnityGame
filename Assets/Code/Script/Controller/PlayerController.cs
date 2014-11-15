@@ -17,12 +17,13 @@ namespace Saiyaku{
 			this.playerController = playerController;
 		}
 
-		public float setRotSpeed(float rotSpeed) {
+		public void setRotSpeed(float rotSpeed) {
 			this.rotSpeed = rotSpeed;
 		}
 
 		public float getRotSpeed() {
 			return rotSpeed;
 		}
+
 	}
 }
