@@ -72,11 +72,11 @@ namespace Saiyaku{
 			
 			if (Input.GetKey(KeyCode.A))
 			{
-				transform.Rotate(0, -rotSpeed * Time.deltaTime, 0.0f);
+				//transform.Rotate(0, -rotSpeed * Time.deltaTime, 0.0f);
 			}
 			else if (Input.GetKey(KeyCode.D))
 			{
-				transform.Rotate(0, rotSpeed * Time.deltaTime, 0.0f);
+				//transform.Rotate(0, rotSpeed * Time.deltaTime, 0.0f);
 			}
 			
 			curSpeed = Mathf.Lerp(curSpeed, targetSpeed, 7.0f * Time.deltaTime);
