@@ -130,7 +130,6 @@ ModelImporter:
     legacyGenerateAnimations: 3
     bakeSimulation: 0
     optimizeGameObjects: 0
-    motionNodeName: 
     animationCompression: 1
     animationRotationError: .100000001
     animationPositionError: .5

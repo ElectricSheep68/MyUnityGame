@@ -1,9 +1,10 @@
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
 using NSubstitute;
+
+using Saiyaku;
 
 namespace Saiyaku
 {
@@ -23,23 +24,23 @@ namespace Saiyaku
 		[TearDown] public void Cleanup()
 		{
 		}
-
+		
 		[Test]
 		[Category ("Click Test: A")]
 		public void ClickWTest() {
 			
 		}
-
+		
 		[Test]
 		[Category ("Click Test: W")]
 		public void ClickSTest() {
-
+			
 		}
 		
 		[Test]
 		[Category ("Click Test: D")]
 		public void ClickDTest() {
-
+			
 		}
 		
 		
@@ -48,7 +49,7 @@ namespace Saiyaku
 		}
 		private PlayerController GetControllerMock(IPlayerCtrl iplayer) {
 			var player = Substitute.For<PlayerController> ();
-
+			
 			player.SetPlayerController (iplayer);
 			return player;
 		}
