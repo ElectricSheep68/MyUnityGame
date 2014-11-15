@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 namespace Saiyaku{
-public class PlayerController : MonoBehaviour 
+public class Player : MonoBehaviour 
 	{
 		public float speed = 5.0f;
 		public float mass = 5.0f;
