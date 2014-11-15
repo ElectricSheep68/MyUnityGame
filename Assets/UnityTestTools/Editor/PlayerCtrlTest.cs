@@ -5,7 +5,7 @@ using NUnit.Framework;
 using UnityEngine;
 using NSubstitute;
 
-namespace Saiyaku.test
+namespace Saiyaku
 {
 	[TestFixture]
 	[Category ("PlayerCtrl Test")]
@@ -32,7 +32,7 @@ namespace Saiyaku.test
 
 		[Test]
 		[Category ("Click Test: W")]
-		public void ClickWTest() {
+		public void ClickSTest() {
 
 		}
 		
