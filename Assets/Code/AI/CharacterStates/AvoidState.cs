@@ -12,7 +12,7 @@ public class AvoidState : FSMState
 		curSpeed = 100.0f;
 	}
 	
-	public override void Reason(Transform player, Transform npc)
+		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		int health = npc.GetComponent<NPCEnemyController> ().health;
 			//体力回復で待機
@@ -29,7 +29,7 @@ public class AvoidState : FSMState
 		}
 	}
 	
-	public override void Act(Transform player, Transform npc)
+		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		destPos = player.position;
 		Vector3 avoidpos = (destPos - npc.position) * -1;

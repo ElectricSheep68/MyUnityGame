@@ -82,10 +82,10 @@ public abstract class FSMState
 	}
 	
 	/// 状態が遷移すべきかの意思決定を行います。
-	public abstract void Reason(Transform player, Transform npc);
+		public abstract void Reason(Transform player, Transform npc,Transform enemy,Transform wall);
 	
 	/// NPC(敵キャラ)の処理、行動、動作を指定します。
-	public abstract void Act(Transform player, Transform npc);
+		public abstract void Act(Transform player, Transform npc,Transform enemy,Transform wall);
 	
 	/// 次の策敵ポイントを指定します。乱数で動作します。
 	public void FindNextPoint()
