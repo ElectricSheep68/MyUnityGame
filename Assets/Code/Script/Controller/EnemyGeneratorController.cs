@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
 namespace Saiyaku{
 
 [Serializable]
 public class EnemyGeneratorController{
-	
+	public GameObject prefav;
 	private float randum = 7f;
 	private float enemySpeed = 10f;
 	private float enemySpan = 100f;
@@ -24,7 +24,7 @@ public class EnemyGeneratorController{
 			accum += Time.deltaTime;
 		}
 
-		private void EnemySpan() {
+		private bool EnemySpan() {
 			AccumAdd ();
 
 			if (accum >= enemySpan) 
@@ -36,8 +36,9 @@ public class EnemyGeneratorController{
 
 		public void Generate()
 		{
-			if(EnemySpan())
-				GameObject enemy = (GameObject)Instantiate(prefab, transform.positio, transform.rotation);
+			if(EnemySpan()){
+				Instantiate(prefab, transform.position, transform.rotation);
+			}
 		}
 }
 }
