@@ -3,15 +3,13 @@ using System.Collections;
 
 namespace Saiyaku{
 
-//	[Serializable]
+[Serializable]
 public class EnemyGeneratorController{
-	//プレハブを定義
-	public GameObject prefab;
+	
 	private float randum = 7f;
 	private float enemySpeed = 10f;
-	private float enemySpan = 10f;
-	private float accum = 0;
-
+	private float enemySpan = 100f;
+	private float accum = 0;	
 	public IEnemyGenerator enemyGeneratorController;
 		
 	public EnemyGeneratorController (){
@@ -21,15 +19,25 @@ public class EnemyGeneratorController{
 			this.enemyGeneratorController = enemyGeneratorController;
 	}
 
-	void EnemySpan() {
-		//経過時間を保存
-		accum += Time.deltaTime;
-
-		if (accum >= enemySpan) 
-		{
-			return true;
+		public void AccumAdd() {
 			accum = 0;
+			accum += Time.deltaTime;
 		}
-	}
+
+		private void EnemySpan() {
+			AccumAdd ();
+
+			if (accum >= enemySpan) 
+			{
+				return true;
+			}
+				return false;
+		}
+
+		public void Generate()
+		{
+			if(EnemySpan())
+				GameObject enemy = (GameObject)Instantiate(prefab, transform.positio, transform.rotation);
+		}
 }
 }
