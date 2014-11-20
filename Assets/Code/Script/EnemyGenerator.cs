@@ -17,8 +17,8 @@ public class EnemyGenerator : MonoBehaviour,IEnemyGenerator {
 		{
 				Instantiate(prefab, transform.position, transform.rotation);
 			}
-		public void prefab{
-		GameObject prefab;
+		public GameObject prefab(GameObject obj){
+			return this.prefab = obj;
 		}
 }
 }
