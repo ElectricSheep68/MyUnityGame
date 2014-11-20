@@ -1245,7 +1245,7 @@ MonoBehaviour:
   speed: 10
   mass: 5
   force: 10
-  minimumDistToAvoid: 5
+  playerpower: 5
 --- !u!1 &2144523159
 GameObject:
   m_ObjectHideFlags: 0
