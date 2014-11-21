@@ -5,7 +5,6 @@ namespace Saiyaku{
 
 [Serializable]
 public class EnemyGeneratorController{
-	private float randum = 7f;
 	private float enemySpeed = 10f;
 	private float enemySpan = 100f;
 	private float accum = 0;	

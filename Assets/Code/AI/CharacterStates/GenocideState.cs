@@ -15,7 +15,7 @@ namespace Saiyaku {
 		{	
 			
 			float wallDist = Vector3.Distance(npc.position,enemy.position);
-			if (wallDist <0f)
+			if (wallDist < 0f)
 			{
 				Debug.Log("Switch to Detention state");
 				npc.GetComponent<SaiyakuController>().SetTransition(Transition.Detention);
@@ -45,21 +45,21 @@ namespace Saiyaku {
 
 			if (distE <= 5.0f && distE < distP)
 			{
-				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Transform turret = npc.GetComponent<SaiyakuController>().turret;
 				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
 				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
 				
 				//射撃
-				npc.GetComponent<NPCEnemyController>().ShootBullet();
+				npc.GetComponent<SaiyakuController>().ShootBullet();
 			}
 			if (distP <= 5.0f && distE > distP)
 			{
-				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
+				Transform turret = npc.GetComponent<SaiyakuController>().turret;
 				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
 				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
 				
 				//射撃
-				npc.GetComponent<NPCEnemyController>().ShootBullet();
+				npc.GetComponent<SaiyakuController>().ShootBullet();
 			}
 			if (distP >= 5.0f && distE >= 5f){
 
