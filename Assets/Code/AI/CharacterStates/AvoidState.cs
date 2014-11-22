@@ -9,14 +9,15 @@ public class AvoidState : FSMState
 		stateID = FSMStateID.Avoid;
 		
 		curRotSpeed = 1.0f;
-		curSpeed = 100.0f;
+		curSpeed = 10.0f;
 	}
 	
 		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		int health = npc.GetComponent<NPCEnemyController> ().health;
+		int maxHP = npc.GetComponent<NPCEnemyController> ().maxHP;
 			//体力回復で待機
-		if (health >= 100) {
+		if (health >= maxHP) {
 				Debug.Log ("Switch to Idol State");
 				npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
 		}
@@ -31,17 +32,19 @@ public class AvoidState : FSMState
 	
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
-		destPos = player.position;
-		Vector3 avoidpos = (destPos - npc.position) * -1;
-		float dist = Vector3.Distance (destPos, npc.position);
-		
-		Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
-		npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
-		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
 
-			if ( dist > 5f) {
-				npc.rigidbody.velocity = Vector3.zero;
-			}
-	}
+			if (Vector3.Distance(npc.position, player.position) <= 3.0f)
+			{
+				destPos = player.position;
+				Vector3 avoidpos = (destPos - npc.position) * -1;
+				
+				Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
+				npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
+				
+				npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+		}
+		}
+
 }
 }
+

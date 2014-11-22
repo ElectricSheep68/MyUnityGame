@@ -29,27 +29,26 @@ public class IdolState : FSMState
 		}
 		//気まぐれに動く。
 			int feel = npc.GetComponent<NPCEnemyController> ().feel;
+			feel = 0;
+			float accum = 0;
+			accum =+ Time.deltaTime;
+			if(accum > Random.Range(10,40)){
+				
+				feel= Random.Range (0, 6);
+				accum = 0f;
 				if(feel > 5){				
 					Debug.Log ("Switch to Loiter State");
 					npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind2);
 				}
 
 			}
-
+		}
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
 		
-		int feel = npc.GetComponent<NPCEnemyController> ().feel;
-		feel = 0;
 		npc.rigidbody.velocity = Vector3.zero;
-		float accum = 0;
-		accum =+ Time.deltaTime;
-		if(accum > Random.Range(10,40)){
-			
-			feel= Random.Range (0, 6);
-			accum = 0f;
 	}
 
 }
 }
-}
+

@@ -58,11 +58,9 @@ namespace Saiyaku{
 			GenocideState Genocide = new GenocideState(waypoints);
 			Genocide.AddTransition(Transition.Genocide, FSMStateID.Kill);
 			Genocide.AddTransition(Transition.Detention, FSMStateID.Stop);
-			Genocide.AddTransition(Transition.NoMind, FSMStateID.Idol);
 			DetentionState Detention = new DetentionState(waypoints);
 			Detention.AddTransition(Transition.Detention, FSMStateID.Stop);
 			Detention.AddTransition(Transition.Genocide, FSMStateID.Kill);
-			Detention.AddTransition(Transition.NoMind, FSMStateID.Idol);
 
 			AddFSMState(Genocide);
 			AddFSMState(Detention);

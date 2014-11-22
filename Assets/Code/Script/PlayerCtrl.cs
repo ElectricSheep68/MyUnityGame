@@ -82,6 +82,7 @@ namespace Saiyaku{
 			curSpeed = Mathf.Lerp(curSpeed, targetSpeed, 7.0f * Time.deltaTime);
 			transform.Translate(Vector3.forward * Time.deltaTime * curSpeed);    
 		}
+	
 		
 		void UpdateWeapon()
 		{

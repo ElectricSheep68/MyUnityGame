@@ -6,10 +6,15 @@ namespace Saiyaku{
 		public GameObject Bullet;
 		public int health;
 		public int hate;
+		public int maxHP;
+		public int feel;
+		public float playerpowr = 10f;
 		//NPC FSMの初期化
 		protected override void Initialize()
-		{
-			health = 100;
+		{	
+			feel = 0;
+			maxHP = 100;
+			health = maxHP;
 			elapsedTime = 0.0f;
 			shootRate = 2.0f;
 			hate = 0;
@@ -108,10 +113,7 @@ namespace Saiyaku{
 					Explode();
 				}
 			}
-			if (collision.gameObject.tag == "player") {
-				hate += 1;
-				SetTransition(Transition.Hate);
-			}
+
 			
 		}
 		

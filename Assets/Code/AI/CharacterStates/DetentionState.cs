@@ -26,7 +26,7 @@ namespace Saiyaku {
 			
 			//Only detect layer 8 (Obstacles)
 			int layerMask = 1 << 8;
-			if (Physics.Raycast(npc.transform.position, npc.transform.forward, out hit, 10f, layerMask))
+			if (Physics.Raycast(npc.transform.position, npc.transform.forward, out hit, 5f, layerMask))
 			{
 				//障害物との接触点の垂直ポイントを取得
 				Vector3 hitNormal = hit.normal;

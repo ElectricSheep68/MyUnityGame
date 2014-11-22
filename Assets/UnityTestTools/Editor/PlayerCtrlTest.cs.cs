@@ -27,18 +27,20 @@ namespace Saiyaku
 		[Test]
 		[Category ("Click Test: A")]
 		public void ClickWTest() {
+			player.IsClickedA ().Returns (true);
 			
 		}
 		
 		[Test]
 		[Category ("Click Test: W")]
 		public void ClickSTest() {
-			
+			player.IsClickedW ().Returns (true);
 		}
 		
 		[Test]
 		[Category ("Click Test: D")]
 		public void ClickDTest() {
+			player.IsClickedD ().Returns (true);
 			
 		}
 		

@@ -8,8 +8,8 @@ namespace Saiyaku {
 			waypoints = wp;
 			stateID = FSMStateID.Trick;
 			
-			curRotSpeed = 1.0f;
-			curSpeed = 10.0f;
+			curRotSpeed = 0.5f;
+			curSpeed = 5.0f;
 		}
 		
 		public override void Reason(Transform player, Transform npc,Transform enemy,Transform wall)
@@ -25,23 +25,26 @@ namespace Saiyaku {
 		
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 		{
+
 			destPos = player.position;
-			Vector3 avoidpos = (destPos - npc.position) * -1;
+			Vector3 avoidpos = (destPos - npc.position);
 			
 			Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
 			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
 			
 			npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
-
+			Transform turret = npc.GetComponent<NPCEnemyController>().turret;
 
 			float dist = Vector3.Distance(npc.position, destPos);
-			if (dist <= 5.0f)
+			if (dist >3.0f) 
 			{
-				//砲台は常にプレーヤーに向きます。
-				Transform turret = npc.GetComponent<NPCEnemyController>().turret;
-				Quaternion turretRotation = Quaternion.LookRotation(destPos - turret.position);
+				Quaternion turretRotation = Quaternion.LookRotation( destPos - turret.position);
 				turret.rotation = Quaternion.Slerp(turret.rotation, turretRotation, Time.deltaTime * curRotSpeed);
-				
+			}
+			if (dist <= 3.0f)
+			{
+
+				turret.rigidbody.velocity = Vector3.zero;
 				//射撃
 				npc.GetComponent<NPCEnemyController>().ShootBullet();
 			}
