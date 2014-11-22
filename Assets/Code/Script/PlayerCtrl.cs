@@ -8,7 +8,7 @@ namespace Saiyaku{
 		
 		private Transform Turret;
 		private Transform bulletSpawnPoint;    
-		private float rotSpeed=10f;
+		//private float rotSpeed = 10f;
 		private float curSpeed, targetSpeed;
 		private float turretRotSpeed = 10.0f;
 		private float maxForwardSpeed = 300.0f;
