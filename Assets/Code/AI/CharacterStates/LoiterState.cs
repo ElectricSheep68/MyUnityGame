@@ -6,7 +6,7 @@ public class LoiterState : FSMState
 	public LoiterState(Transform[] wp) 
 	{ 
 		waypoints = wp;
-		stateID = FSMStateID.Patrolling;
+		stateID = FSMStateID.Loiter;
 		
 		curRotSpeed = 1.0f;
 		curSpeed = 5.0f;
@@ -28,15 +28,20 @@ public class LoiterState : FSMState
 			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.Hate);
 		}
 		//気まぐれに待機する。
-		int random = (Random.Range (0, 6));
-		if (random > 5) {
-			Debug.Log ("Switch to hate State");
-			npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
+				int feel = npc.GetComponent<NPCEnemyController> ().feel;
+
+				if(feel > 5){				
+					Debug.Log ("Switch to idol State");
+					npc.GetComponent<NPCEnemyController> ().SetTransition (Transition.NoMind);
+				}
+				
+
 		}
-	}
 	
 		public override void Act(Transform player, Transform npc,Transform enemy,Transform wall)
 	{
+		int feel = npc.GetComponent<NPCEnemyController> ().feel;
+			feel = 0;
 		//Find another random patrol point if the current point is reached
 		//ターゲット地点に到着した場合に、パトロール地点を再度策定
 		if (Vector3.Distance(npc.position, destPos) <= 3.0f)
@@ -51,6 +56,16 @@ public class LoiterState : FSMState
 		
 		//前進
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+		
+		//とまろうかなという気を起こす
+		float accum = 0;
+		accum =+ Time.deltaTime;
+		if(accum > Random.Range(10,40)){
+			
+			feel= Random.Range (0, 6);
+			accum = 0f;
 	}
 }
 }
+}
+	

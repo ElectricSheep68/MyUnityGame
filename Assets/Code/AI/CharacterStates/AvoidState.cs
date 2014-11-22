@@ -33,11 +33,15 @@ public class AvoidState : FSMState
 	{
 		destPos = player.position;
 		Vector3 avoidpos = (destPos - npc.position) * -1;
+		float dist = Vector3.Distance (destPos, npc.position);
 		
 		Quaternion targetRotation = Quaternion.LookRotation(avoidpos);
 		npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
-		
 		npc.Translate(Vector3.forward * Time.deltaTime * curSpeed);
+
+			if ( dist > 5f) {
+				npc.rigidbody.velocity = Vector3.zero;
+			}
 	}
 }
 }

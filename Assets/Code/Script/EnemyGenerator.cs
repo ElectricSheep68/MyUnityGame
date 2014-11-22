@@ -4,11 +4,11 @@ namespace Saiyaku{
 public class EnemyGenerator : MonoBehaviour,IEnemyGenerator {
 	
 	public EnemyGeneratorController controller;
-	public GameObject prefab;
-	
+		public GameObject prefab;
 	public void OnEnable() {
 			controller.SetEnemyGeneratorController (this);
 		}
+
 	void Update() {
 		controller.EnemySpan();
 		Generate ();
@@ -16,7 +16,9 @@ public class EnemyGenerator : MonoBehaviour,IEnemyGenerator {
 	}
 		public void Generate()
 		{
+	
 				Instantiate(prefab, transform.position, transform.rotation);
 			}
+
 }
 }
