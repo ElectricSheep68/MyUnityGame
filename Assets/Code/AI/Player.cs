@@ -7,7 +7,7 @@ public class Player: MonoBehaviour
 		public float mass = 5.0f;
 		public float force = 10.0f;
 		public float playerpower = 5.0f;
-		private GameObject enemy;
+		public GameObject enemy;
 		//Actual speed of the vehicle 
 		private float curSpeed;
 		private Vector3 targetPoint;
@@ -57,10 +57,12 @@ public class Player: MonoBehaviour
 		void OnCollisionEnter(Collision collision){
 			if(collision.collider.tag == "Enemy"){
 					enemy = GameObject.Find("Enemy");
-					int hate = enemy.GetComponent<NPCEnemyController> ("hate")as hate;
+					int hate = enemy.GetComponent<NPCEnemyController> ().hate;
 					hate += 15;
-				Debug.Log("hate"+hate);
-					enemy.rigidbody.AddForce(Vector3.forward*playerpower);
+				Debug.Log ("hate+"+hate);
+				Vector3 Detection =(enemy.transform.position - transform.position);
+					enemy.rigidbody.AddForce(Detection*playerpower);
+				return;
 				}
 				//壁にぶつかったら止まります。
 			if(collision.collider.tag == "Wall"){

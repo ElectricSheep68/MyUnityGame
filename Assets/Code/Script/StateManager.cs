@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Saiyaku{
-public class StateManager : MonoBehaviour
+public class StateManager : MonoBehaviour,IStateManager
 {
-	// 現在のゲームの状態を保持
 	private IState activeState;
+	public StateManagerController statecontroller;
 	[HideInInspector]
 	public GameData gameData;
-	// Singletons
 	public static StateManager instance;
-	
+
+	public void OnEnable(){
+			statecontroller.SetStateManagerController(this);
+	}
+
 	void Awake()
 	{
 		if (instance == null) {
@@ -28,6 +32,7 @@ public class StateManager : MonoBehaviour
 	void Start()
 	{
 		activeState = new StartScene(this);
+		Debug.Log("scene State " + activeState);
 		gameData = GetComponent<GameData> ();
 	}
 	void Update()
@@ -39,5 +44,8 @@ public class StateManager : MonoBehaviour
 	{
 		activeState = newState;
 	}
+	public string FormatState(){
+			return statecontroller.GetStateName();
+		}
 }
 }
