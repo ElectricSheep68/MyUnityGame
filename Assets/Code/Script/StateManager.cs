@@ -4,7 +4,7 @@ using System.Collections;
 namespace Saiyaku{
 public class StateManager : MonoBehaviour,IStateManager
 {
-	private IState activeState;
+	public IState activeState;
 	public StateManagerController statecontroller;
 	[HideInInspector]
 	public GameData gameData;
@@ -40,9 +40,10 @@ public class StateManager : MonoBehaviour,IStateManager
 		if(activeState != null)
 			activeState.StateUpdate();
 	}
-	public void SwitchState(IState newState)
+	public string SwitchState(Saiyaku.IState newState)
 	{
 		activeState = newState;
+		return activeState.ToString();
 	}
 	public string FormatState(){
 			return statecontroller.GetStateName();

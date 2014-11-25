@@ -3,7 +3,7 @@
 namespace Saiyaku{
 public interface IStateManager{
 
-		void SwichState(IState istate);
+		string SwitchState(IState istate);
 		string FormatState();
 
 	}
