@@ -8,8 +8,9 @@ namespace Saiyaku{
 		
 		public IStateManager Statecontroller;
 		public StateManager statemanager;
-		
+
 		public StateManagerController(){
+
 			statemanager = new StateManager();
 		}
 		
