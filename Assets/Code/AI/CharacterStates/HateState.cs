@@ -35,8 +35,6 @@ namespace Saiyaku {
 
 			npc.rotation = Quaternion.Slerp(npc.rotation, targetRotation, Time.deltaTime * curRotSpeed);
 
-			Transform turret = npc.GetComponent<NPCEnemyController>().turret;
-
 			float dist = Vector3.Distance(npc.position, destPos);
 			if(dist<1f) 
 			{
