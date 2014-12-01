@@ -6,16 +6,16 @@ namespace Saiyaku{
 	[Serializable]
 	public class StateManagerController{
 		
-		public IStateManager Statecontroller;
+		public IStateManager statecontroller;
 		public StateManager statemanager;
 
 		public StateManagerController(){
 
 			statemanager = new StateManager();
 		}
-		
+
 		public void SetStateManagerController(IStateManager statemanagercontroller){
-			this.Statecontroller = statemanagercontroller;
+			this.statecontroller = statemanagercontroller;
 		}
 		
 		public string GetStateName(){
