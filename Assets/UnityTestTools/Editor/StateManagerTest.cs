@@ -9,7 +9,7 @@ namespace Saiyaku.Test{
 	
 	public class StateManagerTest{
 		
-		public StateManagerController istatemanager;
+		public IStateManager istatemanager;
 		public StateManagerController statemanagercontrollre;
 		public StateManager statemanager;
 		
@@ -17,7 +17,7 @@ namespace Saiyaku.Test{
 			this.istatemanager = GetStateManagerMock();
 			this.statemanagercontrollre = GetStateControllerMock(istatemanager);
 			statemanager = new StateManager();
-			this.statemanagercontrollre.Statecontroller.FormatState().Returns("StartState");
+			this.istatemanager.FormatState().Returns("StartState");
 		}
 		
 		[TearDown] public void Cleanup(){
@@ -27,41 +27,40 @@ namespace Saiyaku.Test{
 		[Category("StateName Get Test")]
 		public void StateNameFormatTest(){
 			string statename = istatemanager.FormatState();
-			Assert.That("Start",Is.EqualTo(statename));
+			Assert.That("StartScene",Is.EqualTo(statename));
 		}
 		[Test]
 		[Category("StateName Active State Get Test")]
 		public void StateNameActiveStateGetTest(){
-			string actstate = statemanagercontrollre.statemanager.SwichState(new StartState(statemanager));
-			Assert.That("Saiyaku.Start",Is.EqualTo(actstate));
+			string actstate = statemanagercontrollre.statemanager.SwitchState(new StartScene(statemanager));
+			Assert.That("Saiyaku.StartScene",Is.EqualTo(actstate));
 		}
 		[Test]
-		[Category("StateName StartState Get Test")]
+		[Category("StateName Start Get Test")]
 		public void StateNameGameBeginStateGetTest(){
-			string actstate = statemanagercontrollre.statemanager.SwichState(new StartState(this.statemanager));
-			Assert.That("Saiyaku.Start",Is.EqualTo(actstate));
+			string actstate = statemanagercontrollre.statemanager.SwitchState(new StartScene(this.statemanager));
+			Assert.That("Saiyaku.StartScene",Is.EqualTo(actstate));
 		}
 		[Test]
 		[Category("StateName StageChoice Get Test")]
-		public void StateNameMenuStateGetTest(){
-			string actstate = statemanagercontrollre.statemanager.SwichState(new StageChoice(this.statemanager));
+		public void StateNameStageChoiceStateGetTest(){
+			string actstate = statemanagercontrollre.statemanager.SwitchState(new StageChoice(this.statemanager));
 			Assert.That("Saiyaku.StageChoice",Is.EqualTo(actstate));
 		}
 		[Test]
 		[Category("StateName Stage01 Get Test")]
-		public void StateNameSelectStateGetTest(){
-			string actstatename = statemanagercontrollre.statemanager.SwichState(new Stage01(statemanager));
+		public void StateNameStage01GetTest(){
+			string actstatename = statemanagercontrollre.statemanager.SwitchState(new Stage01(statemanager));
 			Assert.That("Saiyaku.Stage01",Is.EqualTo(actstatename));
 		}
-		}
 		[Test]
-		[Category("StateName ResultState Get Test")]
+		[Category("StateName Result Get Test")]
 		public void StateNameResultStateGetTest(){
-			string actstate = statemanagercontrollre.statemanager.SwichState(new Result(statemanager));
+		string actstate = statemanagercontrollre.statemanager.SwitchState(new Result(statemanager));
 			Assert.That("Saiyaku.Result",Is.EqualTo(actstate));
 		}
 		
-		private IStateManagerController GetStateManagerMock(){
+		private IStateManager GetStateManagerMock(){
 			return Substitute.For<IStateManager>();
 		}
 		
@@ -71,3 +70,4 @@ namespace Saiyaku.Test{
 			return statemanagercontrollre;
 		}
 	}
+}
