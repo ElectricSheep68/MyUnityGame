@@ -27,7 +27,7 @@ namespace Saiyaku.Test{
 		[Category("StateName Get Test")]
 		public void StateNameFormatTest(){
 			string statename = istatemanager.FormatState();
-			Assert.That("StartScene",Is.EqualTo(statename));
+			Assert.That("StartState",Is.EqualTo(statename));
 		}
 		[Test]
 		[Category("StateName Active State Get Test")]
